@@ -50,8 +50,30 @@ $ go get github.com/xiaonanln/goworld
 ```
 
 ### Install dependencies
+GoWorld can uses [Glide](http://glide.sh/) or [Diep](https://github.com/golang/dep) (Recommended) to manage pakages.
 
-GoWorld uses [Glide](http://glide.sh/) to manage packages. 
+#### [Diep](https://github.com/golang/dep)
+ 
+[![Diep](https://github.com/golang/dep/raw/master/docs/img/DigbyShadows.png)](https://github.com/golang/dep)
+
+Grab the latest binary for your OS from [https://github.com/golang/dep/releases](https://github.com/golang/dep/releases) and put it to `$GOPATH/bin`. Rename to **diep** for easy to use.
+
+On macOS you can install or upgrade to the latest released version with Homebrew:
+
+```bash
+$ brew install dep
+$ brew upgrade dep
+```
+
+Run command/bash
+```bash
+cd goworld_folder_path //Replace your goworld folder
+dep init //Scan and create config file
+dep ensure //Install dependencies
+```
+
+#### [Glide](http://glide.sh/)
+ 
 [![Glide](http://glide.sh/assets/logo-small.png)](http://glide.sh/)
 
 **Windows**:
@@ -62,39 +84,40 @@ GoWorld uses [Glide](http://glide.sh/) to manage packages.
 1. Install [Glide](http://glide.sh/): `$ curl https://glide.sh/get | sh`
 2. `$ make install-deps`
 
-## Manage GoWorld using goworld.py
+## Manage GoWorld using Python script
 
-goworld.py is a script for managing goworld server easily. Running goworld.py requires python 2.7.x and psutil module.
-We can use goworld.py to build, start, stop and reload game servers. 
+goworld_**i**.py (i = 2 for Python 2.7.x, i = 3 for Python 3.x) is a script for managing goworld server easily. Running this script requires psutil module.
+We can use this script to build, start, stop and reload game servers. 
 
 ```bash
 $ pip install psutil
 ```
+**NOTE**: Please remember replace **i** to **2**  (Python 2.7.x) or **3** (Python 3)
 
 **Build Dispatcher & Gate:**
 
 ```bash
-$ python goworld.py build dispatcher gate
+$ python goworld_**i**.py build dispatcher gate
 ```
 
 **Build Example Chatroom Server:**
 ```bash
-$ python goworld.py build examples/chatroom_demo
+$ python goworld_**i**.py build examples/chatroom_demo
 ```
 
 **Start Example Chatroom Server: (dispatcher -> game -> gate)**
 ```bash
-$ python goworld.py start examples/chatroom_demo
+$ python goworld_**i**.py start examples/chatroom_demo
 ``` 
 
 **Stop Game Server (gate -> game -> dispatcher):**
 ```bash
-$ python goworld.py stop
+$ python goworld_**i**.py stop
 ```
 
 **Reload Game Servers:**
 ```bash
-$ python goworld.py reload
+$ python goworld_**i**.py reload
 ```
 Reload will reboot game processes with the current executable while preserving all game server states. 
 **However, it is not workable on Windows.**  
@@ -113,11 +136,11 @@ The chatroom demo provides following features:
 
 **Build Server:**
 ```bash
-$ python goworld.py build dispatcher gate chatroom_demo
+$ python goworld_**i**.py build dispatcher gate chatroom_demo
 ```
 **Run Server:**
 ```bash
-$ python goworld.py start chatroom_demo
+$ python goworld_**i**.py start chatroom_demo
 ```
 
 **Chatroom Demo Client:**
@@ -143,11 +166,11 @@ Developing features:
 
 **Build Server:**
 ```bash
-$ python goworld.py build dispatcher gate unity_demo
+$ python goworld_**i**.py build dispatcher gate unity_demo
 ```
 **Run Server:**
 ```bash
-$ python goworld.py start unity_demo
+$ python goworld_**i**.py start unity_demo
 ```
 
 **Unity Demo Client:**
